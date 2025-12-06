@@ -22,6 +22,7 @@ public class RotateOneElementAtRighOrLeft {
 //	public static int[] rotateAtLeftBykPlace(int[] arr, int k){
 //		int n=arr.length;
 //		if(n==0 || k==0)return arr;
+//		k=k>n?k-n:k;
 //		
 //		int[] temp= new int[k];
 //		for(int i=0; i<k; i++) {
@@ -45,20 +46,23 @@ public class RotateOneElementAtRighOrLeft {
 	 * approach 1: Optimal--> instead of storing it in dummy array we can modify the existing array
 	 * when we want to rotate the array at left side by k times then we can follow this
 	 * [2,1,3,4,5,6] --> reverse 1st k elements
-	 * [6,5,4,3,1,2] --> reverse entire array 
-	 * [3,4,5,6,1,2] --> reverse remaining n-k elements
+	 * [2,1,6,5,4,3] --> reverse remaining n-k elements
+	 * [3,4,5,6,1,2] --> reverse entire array 
 	 */
 	
 //	public static int[] rotateAtLeftBykPlace(int[] arr, int k){
 //		int n = arr.length;
-//		int i=0; int j=k-1;
-//		arr=reverseArray(arr,i,j);
 //		
-//		i=0;j=n-1;
-//		arr=reverseArray(arr,i,j);
+//		if(n==0 || k==0)return arr;
 //		
-//		i=0; j=n-k-1;
-//		arr=reverseArray(arr,i,j);
+//		k=k>n?k-n:k;
+//		
+//		// reverse 1st k elements.
+//		arr=reverseArray(arr,0,k-1);
+//		//reverse remaining n-k elements from k to n
+//		arr=reverseArray(arr,k,n-1);
+//		//reverse entire array
+//		arr=reverseArray(arr,0,n-1);
 //		
 //		return arr;
 //		
@@ -114,14 +118,17 @@ public class RotateOneElementAtRighOrLeft {
 	
 	public static int[] rotateAtRightBykPlace(int[] arr, int k){
 		int n = arr.length;
-		int i=0; int j=n-1;
-		arr=reverseArray(arr,i,j);
+		if(n==0||k==0)return arr;
+		k=k>n?k-n:k;
 		
-		i=0;j=k-1;
-		arr=reverseArray(arr,i,j);
+		//reverse entire array
+		arr=reverseArray(arr,0,n-1);
 		
-		i=k; j=n-1;
-		arr=reverseArray(arr,i,j);
+		//reverse 1st k elements
+		arr=reverseArray(arr,0,k-1);
+		
+		//reverse remaining n-k from k to n-1
+		arr=reverseArray(arr,k,n-1);
 		
 		return arr;
 		
