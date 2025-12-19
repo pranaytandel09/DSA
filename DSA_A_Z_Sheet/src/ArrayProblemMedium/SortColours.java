@@ -44,7 +44,7 @@ public class SortColours {
 	        arr[h]=temp;
 	    }
 	
-public static void main(String[] args) {
+	    public static void main(String[] args) {
 		
 		int[] arr= {2,0,1};
 		sortColors(arr);
